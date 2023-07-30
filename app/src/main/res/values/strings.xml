@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Shopping List Manager</string>
     <string name="lista">Controle de Lista de Compras</string>
+    <string name="newList">Nova Lista</string>
 </resources>
