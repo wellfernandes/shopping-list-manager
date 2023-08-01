@@ -52,4 +52,32 @@
         app:layout_constraintStart_toStartOf="@+id/editTextNewList"
         app:layout_constraintTop_toBottomOf="@+id/editTextNewList" />
 
+    <RadioGroup
+        android:id="@+id/radioGroupListFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="@+id/checkBoxLists"
+        app:layout_constraintTop_toBottomOf="@+id/checkBoxLists">
+
+        <RadioButton
+            android:id="@+id/radioButtonOpenLists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Abertas" />
+
+        <RadioButton
+            android:id="@+id/radioButtonCompletedLists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Concluídas" />
+
+        <RadioButton
+            android:id="@+id/radioButtonAllLists"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Todas" />
+    </RadioGroup>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

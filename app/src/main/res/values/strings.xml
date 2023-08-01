@@ -3,7 +3,6 @@
     <string name="lista">Controle de Lista de Compras</string>
     <string name="newList">Nova Lista</string>
     <string name="showingLists">showing the lists</string>
-    <string name="hidingLists">hiding the lists</string>
     <string name="hideLists">Ocultar listas</string>
     <string name="showLists">Exibir listas</string>
 </resources>
