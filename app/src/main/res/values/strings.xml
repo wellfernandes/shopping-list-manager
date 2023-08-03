@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Shopping List Manager</string>
     <string name="lista">Controle de Lista de Compras</string>
-    <string name="newList">Nova Lista</string>
+    <string name="newList">Salvar</string>
     <string name="showingLists">showing the lists</string>
     <string name="hideLists">Ocultar listas</string>
     <string name="showLists">Exibir listas</string>

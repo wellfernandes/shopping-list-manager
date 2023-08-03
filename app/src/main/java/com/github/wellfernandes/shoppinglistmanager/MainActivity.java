@@ -49,6 +49,10 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Created list name: " + newList.getName());
     }
 
+    public void clearText(View view){
+        editTextNewList.setText("");
+    }
+
     public void showListName(View view){
         String listName = editTextNewList.getText().toString();
         Toast.makeText(this, listName, Toast.LENGTH_LONG).show();
