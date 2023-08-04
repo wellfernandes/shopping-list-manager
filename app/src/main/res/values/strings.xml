@@ -2,7 +2,16 @@
     <string name="app_name">Shopping List Manager</string>
     <string name="lista">Controle de Lista de Compras</string>
     <string name="newList">Salvar</string>
-    <string name="showingLists">showing the lists</string>
+    <string name="showingLists">Mostrando as listas</string>
     <string name="hideLists">Ocultar listas</string>
     <string name="showLists">Exibir listas</string>
+    <string name="openListStatus">Abertas</string>
+    <string name="completedListstatus">Concluídas</string>
+    <string name="allListStatus">Todas</string>
+    <string name="messageSelectedItem">" foi selecionado"</string>
+    <string name="messageNoSelectedList">Nenhuma lista selecionada</string>
+    <string name="messageCleanFields">Os campos foram limpos!</string>
+    <string name="messageInsertListName">Insira um nome para lista</string>
+    <string name="messageSelectShowLists">Selecione \'exibir listas\' e escolha uma opção</string>
+    <string name="messageSelectOption">Selecione uma opção</string>
 </resources>
