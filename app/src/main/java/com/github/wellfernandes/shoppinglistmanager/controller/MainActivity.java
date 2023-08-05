@@ -1,4 +1,4 @@
-package com.github.wellfernandes.shoppinglistmanager;
+package com.github.wellfernandes.shoppinglistmanager.controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.github.wellfernandes.shoppinglistmanager.R;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
 import java.util.ArrayList;
