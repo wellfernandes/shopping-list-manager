@@ -74,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.messageSelectShowLists, Toast.LENGTH_SHORT).show();
             return false;
         }else if(checkBoxLists.isChecked() && radioGroupListFilter.getCheckedRadioButtonId() == -1){
+            checkBoxLists.requestFocus();
             Toast.makeText(this, R.string.messageSelectOption, Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -128,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
 
         for (int i = 0; i < allLists.size(); i++) {
             listName.add(allLists.get(i).getName());
-            System.out.println("Nome: " + allLists.get(i).getName());
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listName);
@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         if (selectedItem != null){
             message = selectedItem + getString(R.string.messageSelectedItem);
         }else{
+            spinnerLists.requestFocus();
             message = getString(R.string.messageNoSelectedList);
         }
 
