@@ -14,4 +14,7 @@
     <string name="messageInsertListName">Insira um nome para lista</string>
     <string name="messageSelectShowLists">Selecione \'exibir listas\' e escolha uma opção</string>
     <string name="messageSelectOption">Selecione uma opção</string>
+    <string name="listName">Nome:</string>
+    <string name="createdAt">Criado em:</string>
+    <string name="qntItems">Quantidade de Itens:</string>
 </resources>

@@ -27,7 +27,8 @@ public class ShoppingListAdapter extends BaseAdapter {
         numberFormat = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
     }
 
-    public static class ShoppingListHolder{
+    static class ShoppingListHolder {
+        TextView textViewListName;
     }
 
     @Override
@@ -48,11 +49,22 @@ public class ShoppingListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-       // view = inflater.inflate(R.layout.list_shopping_lists, viewGroup, false);
+        ShoppingList shoppingList  = listShoppingList.get(position);
 
+        if (convertView == null) {
 
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(R.layout.shopping_lists_line, parent, false);
 
-        return null;
+            ShoppingListHolder holder = new ShoppingListHolder();
+            holder.textViewListName = convertView.findViewById(R.id.textViewListName);
+
+            convertView.setTag(holder);
+        }
+
+        ShoppingListHolder holder = (ShoppingListHolder) convertView.getTag();
+        holder.textViewListName.setText(shoppingList.getName());
+
+        return convertView;
     }
 }
