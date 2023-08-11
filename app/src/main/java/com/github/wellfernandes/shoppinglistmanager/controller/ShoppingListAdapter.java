@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
-import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
+import com.github.wellfernandes.shoppinglistmanager.model.Item;
 
 import java.text.NumberFormat;
 import java.util.List;
@@ -17,18 +17,22 @@ import java.util.Locale;
 public class ShoppingListAdapter extends BaseAdapter {
 
     private Context context;
-    private List<ShoppingList> listShoppingList;
+    private List<Item> shoppingListItem;
     private NumberFormat numberFormat;
 
-    public ShoppingListAdapter(Context context, List<ShoppingList> listShoppingList){
+
+    public ShoppingListAdapter(Context context, List<Item> shoppingListItem){
 
         this.context = context;
-        this.listShoppingList = listShoppingList;
+        this.shoppingListItem = shoppingListItem;
         numberFormat = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
     }
 
     static class ShoppingListHolder {
-        TextView textViewListName;
+        TextView textViewNameValue;
+        TextView textViewQntValue;
+
+        TextView textViewPriceValue;
     }
 
     @Override
@@ -49,7 +53,7 @@ public class ShoppingListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        ShoppingList shoppingList  = listShoppingList.get(position);
+        Item item  = shoppingListItem.get(position);
 
         if (convertView == null) {
 
@@ -57,13 +61,17 @@ public class ShoppingListAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.shopping_lists_line, parent, false);
 
             ShoppingListHolder holder = new ShoppingListHolder();
-            holder.textViewListName = convertView.findViewById(R.id.textViewListName);
+            holder.textViewNameValue = convertView.findViewById(R.id.textViewNameValue);
+            holder.textViewQntValue = convertView.findViewById(R.id.textViewQntValue);
+            holder.textViewPriceValue = convertView.findViewById(R.id.textViewPriceValue);
 
             convertView.setTag(holder);
         }
 
         ShoppingListHolder holder = (ShoppingListHolder) convertView.getTag();
-        holder.textViewListName.setText(shoppingList.getName());
+        holder.textViewNameValue.setText(item.getName());
+        holder.textViewQntValue.setText(item.getName());
+        holder.textViewPriceValue.setText(item.getName());
 
         return convertView;
     }
