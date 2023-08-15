@@ -35,7 +35,7 @@ public class ListShoppingList extends AppCompatActivity {
         ArrayList<Item> items = new ArrayList<>();
 
         for (int i = 0; i < listItems.length; i++) {
-            Integer qnt = Integer.parseInt(priceItems[i]);
+            Integer qnt = Integer.parseInt(qntItems[i]);
             Double price = Double.parseDouble(priceItems[i]);
 
             items.add(new Item(i,listItems[i], qnt, price));

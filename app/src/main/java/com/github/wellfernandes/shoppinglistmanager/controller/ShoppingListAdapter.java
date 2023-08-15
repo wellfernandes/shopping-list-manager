@@ -50,13 +50,10 @@ public class ShoppingListAdapter extends BaseAdapter {
         return 0;
     }
 
-    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        Item item  = shoppingListItem.get(position);
+        Item item = shoppingListItem.get(position);
 
         if (convertView == null) {
-
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.shopping_lists_line, parent, false);
 
@@ -70,8 +67,8 @@ public class ShoppingListAdapter extends BaseAdapter {
 
         ShoppingListHolder holder = (ShoppingListHolder) convertView.getTag();
         holder.textViewNameValue.setText(item.getName());
-        holder.textViewQntValue.setText(item.getName());
-        holder.textViewPriceValue.setText(item.getName());
+        holder.textViewQntValue.setText(String.valueOf(item.getQuantity()));
+        holder.textViewPriceValue.setText(numberFormat.format(item.getPrice()));
 
         return convertView;
     }
