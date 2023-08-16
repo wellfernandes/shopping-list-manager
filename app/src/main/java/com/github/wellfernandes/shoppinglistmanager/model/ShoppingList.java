@@ -10,10 +10,7 @@ public class ShoppingList {
     private Date createdAt;
     private List<Item> itens;
 
-
-    public ShoppingList(){
-
-    }
+    public ShoppingList(){}
     public ShoppingList(int id, String name, Date createdAt, List itens) {
         this.id = id;
         this.name = name;

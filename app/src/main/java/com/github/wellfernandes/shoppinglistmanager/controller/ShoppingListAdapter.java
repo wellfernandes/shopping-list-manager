@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Locale;
 
 public class ShoppingListAdapter extends BaseAdapter {
-
     private Context context;
     private List<Item> shoppingListItem;
     private NumberFormat numberFormat;
@@ -31,7 +30,6 @@ public class ShoppingListAdapter extends BaseAdapter {
     static class ShoppingListHolder {
         TextView textViewNameValue;
         TextView textViewQntValue;
-
         TextView textViewPriceValue;
     }
 

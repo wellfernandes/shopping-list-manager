@@ -12,14 +12,12 @@ import com.github.wellfernandes.shoppinglistmanager.model.Item;
 import java.util.ArrayList;
 
 public class ListShoppingList extends AppCompatActivity {
-
     private ListView listViewDefault;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.default_shopping_lists);
-
 
         listViewDefault = findViewById(R.id.listViewDefaultShoppingLists);
 
