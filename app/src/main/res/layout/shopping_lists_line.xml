@@ -1,74 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textViewPriceValue"
-        android:layout_width="108dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/editTextText2"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameValue" />
-
-    <TextView
-        android:id="@+id/textViewNameValue"
-        android:layout_width="269dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/editTextText"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextText"
-        android:layout_width="56dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Nome:"
+        android:id="@+id/textViewIdValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID: "
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextText2"
-        android:layout_width="53dp"
-        android:layout_height="39dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Preço:"
-        app:layout_constraintStart_toStartOf="@+id/editTextText"
-        tools:layout_editor_absoluteY="59dp" />
+    <TextView
+        android:id="@+id/textViewNameValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nome: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewIdValue"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/editTextText3"
-        android:layout_width="54dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="Itens:"
-        app:layout_constraintStart_toEndOf="@+id/textViewPriceValue"
+    <TextView
+        android:id="@+id/textViewItemCountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Itens: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewIdValue" />
+
+    <TextView
+        android:id="@+id/textViewDateValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Data: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewItemCountValue"
         app:layout_constraintTop_toBottomOf="@+id/textViewNameValue" />
 
     <TextView
         android:id="@+id/textViewQntValue"
-        android:layout_width="84dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/textViewNameValue"
-        app:layout_constraintStart_toEndOf="@+id/editTextText3"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNameValue" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantidade: "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewItemCountValue" />
+
+    <TextView
+        android:id="@+id/textViewPriceValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Preço Total: "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewQntValue"
+        app:layout_constraintTop_toBottomOf="@+id/textViewDateValue" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

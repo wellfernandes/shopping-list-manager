@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="list_items">
+<!--    model/shopping list-->
+    <string-array name="list_name">
+        <item>Compra Básica</item>
+        <item>Compra Intermediária</item>
+        <item>Compra Completa</item>
+    </string-array>
+
+    <string-array name="list_data">
+        <item>14/08/2023</item>
+        <item>15/08/2023</item>
+        <item>16/08/2023</item>
+    </string-array>
+
+<!--    model/items-->
+    <string-array name="list_item_names">
         <item>Arroz</item>
         <item>Feijão</item>
         <item>Macarrão</item>
     </string-array>
 
-    <string-array name="qnt_items">
+    <string-array name="list_item_quantities">
         <item>1</item>
         <item>3</item>
         <item>6</item>
     </string-array>
 
-    <string-array name="price">
+    <string-array name="list_item_prices">
         <item>12</item>
         <item>6</item>
         <item>4</item>

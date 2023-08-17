@@ -9,64 +9,61 @@ import android.widget.TextView;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
 import com.github.wellfernandes.shoppinglistmanager.model.Item;
+import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
-import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
 
 public class ShoppingListAdapter extends BaseAdapter {
+
     private Context context;
-    private List<Item> shoppingListItem;
-    private NumberFormat numberFormat;
+    private List<ShoppingList> shoppingLists;
 
-
-    public ShoppingListAdapter(Context context, List<Item> shoppingListItem){
-
+    public ShoppingListAdapter(Context context, List<ShoppingList> shoppingLists) {
         this.context = context;
-        this.shoppingListItem = shoppingListItem;
-        numberFormat = NumberFormat.getNumberInstance(new Locale("pt", "BR"));
-    }
-
-    static class ShoppingListHolder {
-        TextView textViewNameValue;
-        TextView textViewQntValue;
-        TextView textViewPriceValue;
+        this.shoppingLists = shoppingLists;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return shoppingLists.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return shoppingLists.get(position);
     }
 
     @Override
     public long getItemId(int position) {
-        return 0;
+        return position;
     }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        Item item = shoppingListItem.get(position);
+        ShoppingList shoppingList = shoppingLists.get(position);
 
         if (convertView == null) {
             LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.shopping_lists_line, parent, false);
-
-            ShoppingListHolder holder = new ShoppingListHolder();
-            holder.textViewNameValue = convertView.findViewById(R.id.textViewNameValue);
-            holder.textViewQntValue = convertView.findViewById(R.id.textViewQntValue);
-            holder.textViewPriceValue = convertView.findViewById(R.id.textViewPriceValue);
-
-            convertView.setTag(holder);
         }
 
-        ShoppingListHolder holder = (ShoppingListHolder) convertView.getTag();
-        holder.textViewNameValue.setText(item.getName());
-        holder.textViewQntValue.setText(String.valueOf(item.getQuantity()));
-        holder.textViewPriceValue.setText(numberFormat.format(item.getPrice()));
+        TextView nameTextView = convertView.findViewById(R.id.textViewNameValue);
+        TextView itemCountTextView = convertView.findViewById(R.id.textViewQntValue);
+        TextView totalPriceTextView = convertView.findViewById(R.id.textViewPriceValue);
+
+        nameTextView.setText(shoppingList.getName());
+
+        List<Item> items = shoppingList.getItens();
+        int itemCount = 0;
+        double totalPrice = 0;
+
+        for (Item item : items) {
+            itemCount += item.getQuantity();
+            totalPrice += item.getPrice();
+        }
+
+        itemCountTextView.setText(String.valueOf(itemCount));
+        totalPriceTextView.setText(String.format(Locale.getDefault(), "%.2f", totalPrice));
 
         return convertView;
     }
