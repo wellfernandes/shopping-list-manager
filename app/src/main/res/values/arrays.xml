@@ -1,34 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    model/shopping list-->
     <string-array name="list_name">
         <item>Compra Básica</item>
         <item>Compra Intermediária</item>
         <item>Compra Completa</item>
+        <item>Peças do Carro</item>
+        <item>Roupas de Trabalho</item>
+        <item>Livros</item>
+        <item>Fones de Ouvido</item>
+        <item>Eletrônicos</item>
+        <item>Comida Pet</item>
+        <item>Brinquedos Pet</item>
+        <item>Churrasco</item>
+    </string-array>
+
+    <string-array name="list_priority">
+        <item>Baixa</item>
+        <item>Média</item>
+        <item>Alta</item>
+        <item>Média</item>
+        <item>Baixa</item>
+        <item>Média</item>
+        <item>Alta</item>
+        <item>Média</item>
+        <item>Baixa</item>
+        <item>Média</item>
+        <item>Alta</item>
     </string-array>
 
     <string-array name="list_data">
         <item>14/08/2023</item>
         <item>15/08/2023</item>
         <item>16/08/2023</item>
+        <item>17/08/2023</item>
+        <item>18/08/2023</item>
+        <item>19/08/2023</item>
+        <item>20/08/2023</item>
+        <item>21/08/2023</item>
+        <item>22/08/2023</item>
+        <item>23/08/2023</item>
+        <item>24/08/2023</item>
     </string-array>
 
-<!--    model/items-->
-    <string-array name="list_item_names">
-        <item>Arroz</item>
-        <item>Feijão</item>
-        <item>Macarrão</item>
-    </string-array>
-
-    <string-array name="list_item_quantities">
-        <item>1</item>
-        <item>3</item>
-        <item>6</item>
-    </string-array>
-
-    <string-array name="list_item_prices">
+    <string-array name="list_items_quantity">
+        <item>5</item>
+        <item>23</item>
+        <item>47</item>
+        <item>4</item>
+        <item>5</item>
         <item>12</item>
         <item>6</item>
-        <item>4</item>
+        <item>7</item>
+        <item>2</item>
+        <item>11</item>
+        <item>8</item>
     </string-array>
 </resources>

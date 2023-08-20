@@ -1,21 +1,36 @@
 package com.github.wellfernandes.shoppinglistmanager.model;
+import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 // Shopping list entity
 public class ShoppingList {
     private int id;
     private String name;
     private Date createdAt;
-    private List<Item> itens;
+    private String priority;
+    private List<Item> items;
+
+    // items quantity temporary
+    private String ItemsQuantity;
 
     public ShoppingList(){}
-    public ShoppingList(int id, String name, Date createdAt, List itens) {
+
+    public ShoppingList(int id, String name, Date createdAt, String priority, List<Item> items) {
         this.id = id;
         this.name = name;
         this.createdAt = createdAt;
-        this.itens = new ArrayList<>();
+        this.priority = priority;
+        this.items = items;
+    }
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
     }
 
     public int getId() {
@@ -42,11 +57,24 @@ public class ShoppingList {
         this.createdAt = createdAt;
     }
 
-    public List<Item> getItens() {
-        return itens;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItens(List<Item> itens) {
-        this.itens = itens;
+    public void setItems(List<Item> items) {
+        this.items = items;
+    }
+
+    public String getItemsQuantity() {
+        return ItemsQuantity;
+    }
+
+    public void setItemsQuantity(String itemsQuantity) {
+        ItemsQuantity = itemsQuantity;
+    }
+
+    public String getFormattedCreatedAt() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+        return dateFormat.format(createdAt);
     }
 }
