@@ -17,4 +17,5 @@
     <string name="listName">Nome:</string>
     <string name="createdAt">Preço:</string>
     <string name="qntItems">Quantidade de Itens:</string>
+    <string name="itemClicked">"Item clicado: "</string>
 </resources>

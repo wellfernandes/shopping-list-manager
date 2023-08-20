@@ -36,7 +36,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ShoppingList clickedList = shoppingLists.get(position);
                 String itemName = clickedList.getName();
-                Toast.makeText(ShoppingListActivity.this, "Item clicado: " + itemName, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShoppingListActivity.this, getString(R.string.itemClicked) + itemName, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -47,7 +47,6 @@ public class ShoppingListActivity extends AppCompatActivity {
         String[] listCreatedAt = getResources().getStringArray(R.array.list_data);
         String[] listItemsQuantity = getResources().getStringArray(R.array.list_items_quantity);
         String[] listPriority = getResources().getStringArray(R.array.list_priority);
-
 
         shoppingLists = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
