@@ -6,23 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".controller.AboutAppActivity">
 
-    <TextView
-        android:id="@+id/textViewStudentName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/imageViewUtfprLogo"
+        android:layout_width="183dp"
+        android:layout_height="162dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Nome: Welliton Fernandes Leal"
+        android:src="@tools:sample/avatars"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewCourseName" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/utfpr" />
 
     <TextView
-        android:id="@+id/textViewCourseName"
+        android:id="@+id/textViewUniversityName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -30,10 +30,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Nome do Curso: Especialização Java"
+        android:text="Universidade Tecnológica Federal do Paraná"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewUniversityName" />
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUtfprLogo" />
 
     <TextView
         android:id="@+id/textView4"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="Email: wellitonleal@alunos.utfpr.edu.br"
@@ -50,21 +50,21 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewStudentName" />
 
     <TextView
-        android:id="@+id/textViewUniversityName"
+        android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="Universidade Tecnológica Federal do Paraná"
+        android:text="O Shopping List Manager é um aplicativo para criar lista de compras."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textViewCourseName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -72,8 +72,24 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="O Shopping List Manager é um aplicativo para criar lista de compras."
+        android:text="Nome do Curso: Especialização Java"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewUniversityName" />
+
+    <TextView
+        android:id="@+id/textViewStudentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:text="Nome: Welliton Fernandes Leal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCourseName" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
