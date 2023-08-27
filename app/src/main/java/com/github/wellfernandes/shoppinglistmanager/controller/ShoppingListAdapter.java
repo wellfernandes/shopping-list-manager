@@ -50,7 +50,6 @@ public class ShoppingListAdapter extends BaseAdapter {
             holder.textViewIdValue = view.findViewById(R.id.textViewId);
             holder.textViewNameValue = view.findViewById(R.id.textViewName);
             holder.textViewDateValue = view.findViewById(R.id.textViewDate);
-            holder.textViewQntValue = view.findViewById(R.id.textViewQnt);
             holder.textViewPriorityValue = view.findViewById(R.id.textViewPriority);
 
 
@@ -62,7 +61,6 @@ public class ShoppingListAdapter extends BaseAdapter {
         holder.textViewIdValue.setText("ID: " + shoppingList.getId());
         holder.textViewNameValue.setText("Nome: " + shoppingList.getName());
         holder.textViewDateValue.setText("Data: " + shoppingList.getFormattedCreatedAt());
-        holder.textViewQntValue.setText("Quantidade: " + shoppingList.getItemsQuantity());
         holder.textViewPriorityValue.setText("Prioridade: "+ shoppingList.getPriority());
 
         return view;
