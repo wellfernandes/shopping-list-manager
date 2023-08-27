@@ -1,5 +1,6 @@
 package com.github.wellfernandes.shoppinglistmanager.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,10 +10,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
+import com.github.wellfernandes.shoppinglistmanager.constants.Constants;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,7 +20,11 @@ import java.util.List;
 public class ShoppingListActivity extends AppCompatActivity {
 
     private ListView listViewDefault;
-    private List<ShoppingList> shoppingLists;
+    private static List<ShoppingList> shoppingLists = new ArrayList<>();
+    private ShoppingListAdapter shoppingListAdapter;
+
+    private String newListName;
+    private String newListPriority;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +33,9 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         listViewDefault = findViewById(R.id.listViewDefaultShoppingLists);
 
-        populate();
+        setTitle("Listas de Compras");
 
+        populateListViewShoppingLists();
         listViewDefault.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -41,40 +46,35 @@ public class ShoppingListActivity extends AppCompatActivity {
         });
     }
 
-    public void populate() {
+    public void openListRegistration(View view) {
+        Intent intent = new Intent(this, ListRegistrationActivity.class);
+        startActivityForResult(intent, Constants.REQUEST_CODE);
+    }
 
-        String[] listNames = getResources().getStringArray(R.array.list_name);
-        String[] listCreatedAt = getResources().getStringArray(R.array.list_data);
-        String[] listItemsQuantity = getResources().getStringArray(R.array.list_items_quantity);
-        String[] listPriority = getResources().getStringArray(R.array.list_priority);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        shoppingLists = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        if (requestCode == Constants.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
 
-        for (int i = 0; i < listNames.length; i++) {
+            String listName = data.getStringExtra(Constants.EXTRA_NEW_LIST_NAME);
+            String listPriority = data.getStringExtra(Constants.EXTRA_LIST_PRIORITY);
 
-            try {
-                // Parse the string date into a Date object
-                Date createdAt = dateFormat.parse(listCreatedAt[i]);
+            ShoppingList newList = new ShoppingList(shoppingLists.size() + 1, listName, new Date(), listPriority);
+            shoppingLists.add(newList);
 
-                // new shopping list
-                ShoppingList shoppingList = new ShoppingList();
-
-                shoppingList.setId(i+1);
-                shoppingList.setName(listNames[i]);
-                shoppingList.setCreatedAt(createdAt);
-                shoppingList.setItemsQuantity(listItemsQuantity[i]);
-                shoppingList.setPriority(listPriority[i]);
-
-                // add shopping list to array shoppinglists
-                shoppingLists.add(shoppingList);
-            }catch (ParseException e) {
-                e.printStackTrace();
-            }
+            shoppingListAdapter.notifyDataSetChanged();
         }
+    }
 
-        ShoppingListAdapter shoppingListAdapter = new ShoppingListAdapter(this, shoppingLists);
+    public void openAbout(View view) {
+        Intent intent = new Intent(this, AboutAppActivity.class);
+        startActivity(intent);
+    }
 
+    private void populateListViewShoppingLists() {
+
+        shoppingListAdapter = new ShoppingListAdapter(this, shoppingLists);
         listViewDefault.setAdapter(shoppingListAdapter);
     }
 }
