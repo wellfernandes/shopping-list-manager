@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".controller.MainActivity">
+    tools:context=".controller.ListRegistrationActivity">
 
     <TextView
-        android:id="@+id/textViewAppName"
+        android:id="@+id/textViewTitleListRegistration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -16,98 +16,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/buttonAddList"
-        android:layout_width="122dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="12dp"
-        android:onClick="addNewList"
-        android:text="@string/newList"
-        app:layout_constraintEnd_toEndOf="@+id/editTextNewList"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNewList" />
-
     <EditText
         android:id="@+id/editTextNewList"
         android:layout_width="355dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_height="58dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewAppName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleListName" />
 
-    <CheckBox
-        android:id="@+id/checkBoxLists"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Exibir listas"
+    <Spinner
+        android:id="@+id/spinnerLists"
+        android:layout_width="355dp"
+        android:layout_height="58dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintEnd_toEndOf="@+id/editTextNewList"
         app:layout_constraintStart_toStartOf="@+id/editTextNewList"
-        app:layout_constraintTop_toBottomOf="@+id/editTextNewList" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupListFilter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="@+id/checkBoxLists"
-        app:layout_constraintTop_toBottomOf="@+id/checkBoxLists">
-
-        <RadioButton
-            android:id="@+id/radioButtonOpenLists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Abertas" />
-
-        <RadioButton
-            android:id="@+id/radioButtonCompletedLists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Concluídas" />
-
-        <RadioButton
-            android:id="@+id/radioButtonAllLists"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Todas" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="122dp"
         android:layout_height="49dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:onClick="clearText"
         android:text="Limpar"
         app:layout_constraintEnd_toEndOf="@+id/buttonAddList"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/buttonAddList"
         app:layout_constraintTop_toBottomOf="@+id/buttonAddList" />
 
-    <Spinner
-        android:id="@+id/spinnerLists"
-        android:layout_width="330dp"
-        android:layout_height="46dp"
+    <Button
+        android:id="@+id/buttonAddList"
+        android:layout_width="122dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginRight="12dp"
+        android:onClick="saveNewList"
+        android:text="@string/newList"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerLists"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerLists" />
+
+    <TextView
+        android:id="@+id/textViewTitleListName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Nome da Lista"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitleListRegistration" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:spinnerMode="dialog"
+        android:text="Prioridade"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroupListFilter" />
-
-    <Button
-        android:id="@+id/buttonShowSelected"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="showSelectedItem"
-        android:text="Mostrar Selecionado"
-        app:layout_constraintEnd_toEndOf="@+id/spinnerLists"
-        app:layout_constraintStart_toStartOf="@+id/spinnerLists"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerLists" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextNewList" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
