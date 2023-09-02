@@ -1,13 +1,16 @@
 package com.github.wellfernandes.shoppinglistmanager.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
@@ -51,6 +54,18 @@ public class ShoppingListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_view_options_menu, menu);
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.menuItemAdd) {
+            Intent intent = new Intent(this, ListRegistrationActivity.class);
+            startActivityForResult(intent, Constants.REQUEST_CODE);
+        }else if(item.getItemId() == R.id.menuItemAbout) {
+            Intent intent = new Intent(this, AboutAppActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void openListRegistration(View view) {
