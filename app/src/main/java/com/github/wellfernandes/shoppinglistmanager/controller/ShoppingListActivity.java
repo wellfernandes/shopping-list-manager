@@ -27,9 +27,6 @@ public class ShoppingListActivity extends AppCompatActivity {
     private static List<ShoppingList> shoppingLists = new ArrayList<>();
     private ShoppingListAdapter shoppingListAdapter;
 
-    private String newListName;
-    private String newListPriority;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +65,6 @@ public class ShoppingListActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void openListRegistration(View view) {
-        Intent intent = new Intent(this, ListRegistrationActivity.class);
-        startActivityForResult(intent, Constants.REQUEST_CODE);
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -87,11 +79,6 @@ public class ShoppingListActivity extends AppCompatActivity {
 
             shoppingListAdapter.notifyDataSetChanged();
         }
-    }
-
-    public void openAbout(View view) {
-        Intent intent = new Intent(this, AboutAppActivity.class);
-        startActivity(intent);
     }
 
     private void populateListViewShoppingLists() {
