@@ -1,8 +1,8 @@
 package com.github.wellfernandes.shoppinglistmanager.controller;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +45,8 @@ public class ShoppingListActivity extends AppCompatActivity {
                 Toast.makeText(ShoppingListActivity.this, getString(R.string.itemClicked) + itemName, Toast.LENGTH_SHORT).show();
             }
         });
+
+        registerForContextMenu(listViewDefault);
     }
 
     @Override
@@ -63,6 +65,26 @@ public class ShoppingListActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.main_view_context_menu, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+        AdapterView.AdapterContextMenuInfo menuInfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        if(item.getItemId() == R.id.menuItemEdit) {
+            editList(menuInfo.position);
+            Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
+        }else if(item.getItemId() == R.id.menuItemDelete) {
+            deleteList(menuInfo.position);
+            Toast.makeText(this, "Excluído", Toast.LENGTH_SHORT).show();
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -85,5 +107,19 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         shoppingListAdapter = new ShoppingListAdapter(this, shoppingLists);
         listViewDefault.setAdapter(shoppingListAdapter);
+    }
+
+    private void editList(int position) {
+        Intent intent = new Intent(this, ListRegistrationActivity.class);
+        intent.putExtra(Constants.EXTRA_LIST_ID, shoppingLists.get(position).getId());
+        intent.putExtra(Constants.EXTRA_LIST_NAME, shoppingLists.get(position).getName());
+        intent.putExtra(Constants.EXTRA_LIST_PRIORITY, shoppingLists.get(position).getPriority());
+        startActivityForResult(intent, Constants.REQUEST_CODE);
+
+    }
+
+    private void deleteList(int position) {
+        shoppingLists.remove(position);
+        shoppingListAdapter.notifyDataSetChanged();
     }
 }
