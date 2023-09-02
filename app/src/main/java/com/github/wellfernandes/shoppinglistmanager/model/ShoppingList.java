@@ -11,10 +11,6 @@ public class ShoppingList implements Serializable {
     private String name;
     private Date createdAt;
     private String priority;
-//    private List<Item> items;
-
-    // items quantity temporary
-//    private String ItemsQuantity;
 
     public ShoppingList(){}
 
@@ -56,22 +52,6 @@ public class ShoppingList implements Serializable {
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
     }
-
-//    public List<Item> getItems() {
-//        return items;
-//    }
-//
-//    public void setItems(List<Item> items) {
-//        this.items = items;
-//    }
-//
-//    public String getItemsQuantity() {
-//        return ItemsQuantity;
-//    }
-//
-//    public void setItemsQuantity(String itemsQuantity) {
-//        ItemsQuantity = itemsQuantity;
-//    }
 
     public String getFormattedCreatedAt() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
