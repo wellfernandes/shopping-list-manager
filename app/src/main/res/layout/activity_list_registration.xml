@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".controller.ListRegistrationActivity">
 
-    <TextView
-        android:id="@+id/textViewTitleListRegistration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/lista"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/editTextNewList"
         android:layout_width="355dp"
@@ -46,20 +36,6 @@
         android:layout_marginTop="8dp"
         android:onClick="clearText"
         android:text="Limpar"
-        app:layout_constraintEnd_toEndOf="@+id/buttonAddList"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/buttonAddList"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddList" />
-
-    <Button
-        android:id="@+id/buttonAddList"
-        android:layout_width="122dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:onClick="saveNewList"
-        android:text="@string/newList"
         app:layout_constraintEnd_toEndOf="@+id/spinnerLists"
         app:layout_constraintTop_toBottomOf="@+id/spinnerLists" />
 
@@ -69,10 +45,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:text="Nome da Lista"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitleListRegistration" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
