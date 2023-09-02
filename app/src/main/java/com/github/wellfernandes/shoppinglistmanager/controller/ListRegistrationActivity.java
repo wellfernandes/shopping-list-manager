@@ -2,12 +2,15 @@ package com.github.wellfernandes.shoppinglistmanager.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
@@ -34,12 +37,28 @@ public class ListRegistrationActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.list_registration_options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.menuItemSave) {
+            saveNewList();
+        }else if(item.getItemId() == R.id.menuItemCancel) {
+            cancelNewList();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void onBackPressed() {
         setResult(RESULT_CANCELED);
         super.onBackPressed();
     }
 
-    public void saveNewList(View view) {
+    public void saveNewList() {
 
         String listName = editTextNewList.getText().toString();
         String listPriority = spinnerLists.getSelectedItem().toString();
@@ -70,5 +89,10 @@ public class ListRegistrationActivity extends AppCompatActivity {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, priorityList);
         spinnerLists.setAdapter(adapter);
+    }
+
+    public void cancelNewList() {
+        setResult(RESULT_CANCELED);
+        finish();
     }
 }
