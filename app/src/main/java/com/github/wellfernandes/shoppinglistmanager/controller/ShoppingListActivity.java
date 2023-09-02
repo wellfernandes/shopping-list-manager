@@ -22,7 +22,6 @@ import java.util.Date;
 import java.util.List;
 
 public class ShoppingListActivity extends AppCompatActivity {
-
     private ListView listViewDefault;
     private static List<ShoppingList> shoppingLists = new ArrayList<>();
     private ShoppingListAdapter shoppingListAdapter;
@@ -92,7 +91,6 @@ public class ShoppingListActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == Constants.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-
             String listName = data.getStringExtra(Constants.EXTRA_NEW_LIST_NAME);
             String listPriority = data.getStringExtra(Constants.EXTRA_LIST_PRIORITY);
 
