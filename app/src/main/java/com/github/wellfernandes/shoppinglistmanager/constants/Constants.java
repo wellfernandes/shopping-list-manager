@@ -7,4 +7,5 @@ public class Constants {
     public static final String EXTRA_LIST_ID = "LIST_ID";
     public static final String EXTRA_LIST_NAME = "LIST_NAME";
     public static final String EXTRA_EDITED_POSITION = "EDITED_POSITION";
+    public static int SELECTED_POSITION = -1;
 }
