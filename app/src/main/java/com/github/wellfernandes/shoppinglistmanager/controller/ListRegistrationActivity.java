@@ -11,15 +11,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
 import com.github.wellfernandes.shoppinglistmanager.constants.Constants;
+import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
 import java.util.ArrayList;
 
 public class ListRegistrationActivity extends AppCompatActivity {
-
     private EditText editTextNewList;
     private Spinner spinnerLists;
 
@@ -28,12 +29,32 @@ public class ListRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_registration);
 
-        setTitle("Cadastrar Nova Lista");
+        setTitle("Nova Lista");
 
         editTextNewList = findViewById(R.id.editTextNewList);
         spinnerLists = findViewById(R.id.spinnerLists);
 
         populateSpinnerPriorities();
+
+        Intent intent = getIntent();
+        if(intent.hasExtra(Constants.EXTRA_LIST_NAME)) {
+            setTitle("Editar Lista");
+            String listName = intent.getStringExtra(Constants.EXTRA_LIST_NAME);
+            editTextNewList.setText(listName);
+
+            editTextNewList.setSelection(listName.length());
+
+            String listPriority = intent.getStringExtra(Constants.EXTRA_LIST_PRIORITY);
+            ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinnerLists.getAdapter();
+            if (adapter != null) {
+                spinnerLists.setSelection(adapter.getPosition(listPriority));
+            }
+        }
+
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -46,7 +67,9 @@ public class ListRegistrationActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(item.getItemId() == R.id.menuItemSave) {
             saveNewList();
-        }else if(item.getItemId() == R.id.menuItemCancel) {
+        }else if(item.getItemId() == R.id.menuItemClear) {
+            clearText();
+        }else if(item.getItemId() == android.R.id.home) {
             cancelNewList();
         }
         return super.onOptionsItemSelected(item);
@@ -59,22 +82,33 @@ public class ListRegistrationActivity extends AppCompatActivity {
     }
 
     public void saveNewList() {
-
         String listName = editTextNewList.getText().toString();
         String listPriority = spinnerLists.getSelectedItem().toString();
 
-        if (!listName.isEmpty()) {
+        if (!listName.isEmpty() && getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1) == -1) {
             Intent intent = new Intent();
             intent.putExtra(Constants.EXTRA_NEW_LIST_NAME, listName);
             intent.putExtra(Constants.EXTRA_LIST_PRIORITY, listPriority);
             setResult(RESULT_OK, intent);
+            finish();
+        } else if (getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1) != -1) {
+            int editedListId = getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1);
+            for (ShoppingList shoppingList : ShoppingListActivity.getShoppingLists()) {
+                if (shoppingList.getId() == editedListId) {
+                    shoppingList.setName(listName);
+                    shoppingList.setPriority(listPriority);
+                    break;
+                }
+            }
+
+            setResult(RESULT_OK);
             finish();
         } else {
             Toast.makeText(this, R.string.messageInsertListName, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void clearText(View view) {
+    public void clearText() {
         editTextNewList.setText("");
         Toast.makeText(this, R.string.messageCleanFields, Toast.LENGTH_SHORT).show();
     }
