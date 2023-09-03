@@ -10,10 +10,10 @@
         android:title="Salvar"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/menuItemCancel"
+        android:id="@+id/menuItemClear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="Cancelar"
+        android:title="Limpar"
         app:showAsAction="ifRoom" />
 </menu>
