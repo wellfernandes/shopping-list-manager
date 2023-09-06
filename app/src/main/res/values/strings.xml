@@ -18,4 +18,7 @@
     <string name="createdAt">Preço:</string>
     <string name="qntItems">Quantidade de Itens:</string>
     <string name="itemClicked">"Item clicado: "</string>
+    <string name="toast_message_edit">Editar</string>
+    <string name="toast_message_deleted">Excluído</string>
+    <string name="view_name_shopping_lists">Listas de Compras</string>
 </resources>

@@ -29,7 +29,6 @@ public class ShoppingListActivity extends AppCompatActivity {
     private ListView listViewDefault;
     private static List<ShoppingList> shoppingLists = new ArrayList<>();
     private ShoppingListAdapter shoppingListAdapter;
-
     private ActionMode actionMode;
     private View selectedView;
 
@@ -87,7 +86,7 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         listViewDefault = findViewById(R.id.listViewDefaultShoppingLists);
 
-        setTitle("Listas de Compras");
+        setTitle(getString(R.string.view_name_shopping_lists));
 
         populateListViewShoppingLists();
         listViewDefault.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -156,10 +155,10 @@ public class ShoppingListActivity extends AppCompatActivity {
 
         if(item.getItemId() == R.id.menuItemEdit) {
             editList(menuInfo.position);
-            Toast.makeText(this, "Editar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_message_edit, Toast.LENGTH_SHORT).show();
         }else if(item.getItemId() == R.id.menuItemDelete) {
             deleteList(menuInfo.position);
-            Toast.makeText(this, "Excluído", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_message_deleted, Toast.LENGTH_SHORT).show();
         }
         return super.onContextItemSelected(item);
     }
