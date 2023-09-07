@@ -16,7 +16,7 @@ public class AboutAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about_app);
 
-        setTitle("Sobre o Aplicativo");
+        setTitle(getString(R.string.view_name_about));
 
         ActionBar actionBar = getSupportActionBar();
         if(actionBar != null) {

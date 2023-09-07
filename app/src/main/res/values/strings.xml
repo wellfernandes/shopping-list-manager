@@ -21,4 +21,11 @@
     <string name="toast_message_edit">Editar</string>
     <string name="toast_message_deleted">Excluído</string>
     <string name="view_name_shopping_lists">Listas de Compras</string>
+    <string name="view_name_about">Sobre o Aplicativo</string>
+    <string name="text_view_value_id">"ID: "</string>
+    <string name="text_view_value_name">"Nome: "</string>
+    <string name="text_view_value_data">"Data: "</string>
+    <string name="text_view_value_priority">"Prioridade: "</string>
+    <string name="view_name_new_list">Nova Lista</string>
+    <string name="view_name_edit_list">Editar Lista</string>
 </resources>

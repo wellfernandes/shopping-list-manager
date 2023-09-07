@@ -29,7 +29,7 @@ public class ListRegistrationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_registration);
 
-        setTitle("Nova Lista");
+        setTitle(getString(R.string.view_name_new_list));
 
         editTextNewList = findViewById(R.id.editTextNewList);
         spinnerLists = findViewById(R.id.spinnerLists);
@@ -38,7 +38,7 @@ public class ListRegistrationActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         if(intent.hasExtra(Constants.EXTRA_LIST_NAME)) {
-            setTitle("Editar Lista");
+            setTitle(getString(R.string.view_name_edit_list));
             String listName = intent.getStringExtra(Constants.EXTRA_LIST_NAME);
             editTextNewList.setText(listName);
 

@@ -58,10 +58,10 @@ public class ShoppingListAdapter extends BaseAdapter {
             holder = (ShoppingListHolder) view.getTag();
         }
 
-        holder.textViewIdValue.setText("ID: " + shoppingList.getId());
-        holder.textViewNameValue.setText("Nome: " + shoppingList.getName());
-        holder.textViewDateValue.setText("Data: " + shoppingList.getFormattedCreatedAt());
-        holder.textViewPriorityValue.setText("Prioridade: "+ shoppingList.getPriority());
+        holder.textViewIdValue.setText(context.getString(R.string.text_view_value_id) + shoppingList.getId());
+        holder.textViewNameValue.setText(context.getString(R.string.text_view_value_name) + shoppingList.getName());
+        holder.textViewDateValue.setText(context.getString(R.string.text_view_value_data) + shoppingList.getFormattedCreatedAt());
+        holder.textViewPriorityValue.setText(context.getString(R.string.text_view_value_priority)+ shoppingList.getPriority());
 
         return view;
     }
@@ -70,7 +70,6 @@ public class ShoppingListAdapter extends BaseAdapter {
         TextView textViewIdValue;
         TextView textViewNameValue;
         TextView textViewDateValue;
-        TextView textViewQntValue;
         TextView textViewPriorityValue;
     }
 }
