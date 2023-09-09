@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gerenciador de Lista de Compras</string>
+    <string name="lista">"Cadastrar Nova Lista"</string>
+    <string name="newList">Salvar</string>
+    <string name="showingLists">"Mostrando as listas"</string>
+    <string name="hideLists">"Ocultar listas"</string>
+    <string name="showLists">"Exibir listas"</string>
+    <string name="openListStatus">Abertas</string>
+    <string name="completedListstatus">Concluídas</string>
+    <string name="allListStatus">Todas</string>
+    <string name="messageSelectedItem">" foi selecionado"</string>
+    <string name="messageNoSelectedList">"Nenhuma lista selecionada"</string>
+    <string name="messageCleanFields">"Os campos foram limpos!"</string>
+    <string name="messageInsertListName">"Insira um nome para lista"</string>
+    <string name="messageSelectShowLists">"Selecione \'exibir listas\' e escolha uma opção"</string>
+    <string name="messageSelectOption">"Selecione uma opção"</string>
+    <string name="listName">Nome:</string>
+    <string name="createdAt">Preço:</string>
+    <string name="qntItems">"Quantidade de Itens:"</string>
+    <string name="itemClicked">"Item clicado: "</string>
+    <string name="toast_message_edit">Editar</string>
+    <string name="toast_message_deleted">Excluído</string>
+    <string name="view_name_shopping_lists">"Listas de Compras"</string>
+    <string name="view_name_about">"Sobre o Aplicativo"</string>
+    <string name="text_view_value_id">"ID: "</string>
+    <string name="text_view_value_name">"Nome: "</string>
+    <string name="text_view_value_data">"Data: "</string>
+    <string name="text_view_value_priority">"Prioridade: "</string>
+    <string name="view_name_new_list">"Nova Lista"</string>
+    <string name="view_name_edit_list">"Editar Lista"</string>
+    <string name="university_name">"Universidade Tecnológica Federal do Paraná"</string>
+    <string name="course_name">"Especialização Java"</string>
+    <string name="student_name">"Nome: Welliton Fernandes Leal"</string>
+    <string name="student_email">"Email: wellitonleal@alunos.utfpr.edu.br"</string>
+    <string name="text_about_app">"O Shopping List Manager é um aplicativo para criar lista de compras, podendo indicar o nível de prioridade de cada lista."</string>
+</resources>
