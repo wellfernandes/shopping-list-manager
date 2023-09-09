@@ -14,4 +14,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Sobre" />
+    <group
+        android:id="@+id/groupThemeOptions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/menuItemLightTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Tema Claro" />
+        <item
+            android:id="@+id/menuItemDarkTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:title="Tema Escuro" />
+    </group>
 </menu>
