@@ -39,4 +39,6 @@
     <string name="about_app">About</string>
     <string name="delete_list_selected">Delete</string>
     <string name="edit_list_selected">Edit</string>
+    <string name="list_name">List Name</string>
+    <string name="list_priority">Priority</string>
 </resources>
