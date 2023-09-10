@@ -40,4 +40,6 @@
     <string name="dark_theme">Tema Escuro</string>
     <string name="delete_list_selected">Excluir</string>
     <string name="edit_list_selected">Editar</string>
+    <string name="list_name">Nome da Lista</string>
+    <string name="list_priority">Prioridade</string>
 </resources>
