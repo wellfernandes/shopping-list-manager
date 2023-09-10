@@ -7,13 +7,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="Adicionar"
+        android:title="@string/add_new_list"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/menuItemAbout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:title="Sobre" />
+        android:title="@string/about_app" />
     <group
         android:id="@+id/groupThemeOptions"
         android:layout_width="match_parent"
@@ -23,11 +23,11 @@
             android:id="@+id/menuItemLightTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="Tema Claro" />
+            android:title="@string/light_theme" />
         <item
             android:id="@+id/menuItemDarkTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:title="Tema Escuro" />
+            android:title="@string/dark_theme" />
     </group>
 </menu>

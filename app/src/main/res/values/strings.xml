@@ -33,4 +33,8 @@
     <string name="student_name">Name: Welliton Fernandes Leal</string>
     <string name="student_email">"Email: wellitonleal@alunos.utfpr.edu.br"</string>
     <string name="text_about_app">The Shopping List Manager is an app for creating shopping lists, allowing you to indicate the priority level of each list.</string>
+    <string name="light_theme">Light Theme</string>
+    <string name="dark_theme">Dark Theme</string>
+    <string name="add_new_list">Add</string>
+    <string name="about_app">About</string>
 </resources>
