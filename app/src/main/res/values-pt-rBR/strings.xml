@@ -38,4 +38,6 @@
     <string name="about_app">Sobre</string>
     <string name="light_theme">Tema Claro</string>
     <string name="dark_theme">Tema Escuro</string>
+    <string name="delete_list_selected">Excluir</string>
+    <string name="edit_list_selected">Editar</string>
 </resources>

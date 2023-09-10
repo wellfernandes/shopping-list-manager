@@ -37,4 +37,6 @@
     <string name="dark_theme">Dark Theme</string>
     <string name="add_new_list">Add</string>
     <string name="about_app">About</string>
+    <string name="delete_list_selected">Delete</string>
+    <string name="edit_list_selected">Edit</string>
 </resources>
