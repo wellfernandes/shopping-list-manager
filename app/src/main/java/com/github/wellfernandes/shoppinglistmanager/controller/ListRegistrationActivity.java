@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
-import com.github.wellfernandes.shoppinglistmanager.constants.Constants;
+import com.github.wellfernandes.shoppinglistmanager.constants.AppConstants;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
 import java.util.ArrayList;
@@ -37,14 +36,14 @@ public class ListRegistrationActivity extends AppCompatActivity {
         populateSpinnerPriorities();
 
         Intent intent = getIntent();
-        if(intent.hasExtra(Constants.EXTRA_LIST_NAME)) {
+        if(intent.hasExtra(AppConstants.EXTRA_LIST_NAME)) {
             setTitle(getString(R.string.view_name_edit_list));
-            String listName = intent.getStringExtra(Constants.EXTRA_LIST_NAME);
+            String listName = intent.getStringExtra(AppConstants.EXTRA_LIST_NAME);
             editTextNewList.setText(listName);
 
             editTextNewList.setSelection(listName.length());
 
-            String listPriority = intent.getStringExtra(Constants.EXTRA_LIST_PRIORITY);
+            String listPriority = intent.getStringExtra(AppConstants.EXTRA_LIST_PRIORITY);
             ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinnerLists.getAdapter();
             if (adapter != null) {
                 spinnerLists.setSelection(adapter.getPosition(listPriority));
@@ -85,14 +84,14 @@ public class ListRegistrationActivity extends AppCompatActivity {
         String listName = editTextNewList.getText().toString();
         String listPriority = spinnerLists.getSelectedItem().toString();
 
-        if (!listName.isEmpty() && getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1) == -1) {
+        if (!listName.isEmpty() && getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1) == -1) {
             Intent intent = new Intent();
-            intent.putExtra(Constants.EXTRA_NEW_LIST_NAME, listName);
-            intent.putExtra(Constants.EXTRA_LIST_PRIORITY, listPriority);
+            intent.putExtra(AppConstants.EXTRA_NEW_LIST_NAME, listName);
+            intent.putExtra(AppConstants.EXTRA_LIST_PRIORITY, listPriority);
             setResult(RESULT_OK, intent);
             finish();
-        } else if (getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1) != -1) {
-            int editedListId = getIntent().getIntExtra(Constants.EXTRA_LIST_ID, -1);
+        } else if (getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1) != -1) {
+            int editedListId = getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1);
             for (ShoppingList shoppingList : ShoppingListActivity.getShoppingLists()) {
                 if (shoppingList.getId() == editedListId) {
                     shoppingList.setName(listName);

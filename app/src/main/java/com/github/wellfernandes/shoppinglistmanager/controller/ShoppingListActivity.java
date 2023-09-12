@@ -20,7 +20,7 @@
     import androidx.appcompat.view.ActionMode;
 
     import com.github.wellfernandes.shoppinglistmanager.R;
-    import com.github.wellfernandes.shoppinglistmanager.constants.Constants;
+    import com.github.wellfernandes.shoppinglistmanager.constants.AppConstants;
     import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
     import java.util.ArrayList;
@@ -51,21 +51,21 @@
 
             @Override
             public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-                if (Constants.SELECTED_POSITION == -1) {
+                if (AppConstants.SELECTED_POSITION == -1) {
                     return ShoppingListActivity.super.onContextItemSelected(item);
                 }
 
                 if (item.getItemId() == R.id.menuItemEdit) {
-                    editList(Constants.SELECTED_POSITION);
+                    editList(AppConstants.SELECTED_POSITION);
                     mode.finish();
                     return true;
                 } else if (item.getItemId() == R.id.menuItemDelete) {
-                    deleteList(Constants.SELECTED_POSITION);
+                    deleteList(AppConstants.SELECTED_POSITION);
                     mode.finish();
                     return true;
                 }
 
-                Constants.SELECTED_POSITION = -1;
+                AppConstants.SELECTED_POSITION = -1;
                 return false;
             }
 
@@ -98,7 +98,7 @@
                     ShoppingList clickedList = shoppingLists.get(position);
                     String itemName = clickedList.getName();
 
-                    Constants.SELECTED_POSITION = position;
+                    AppConstants.SELECTED_POSITION = position;
                     view.setSelected(true);
 
                     Toast.makeText(ShoppingListActivity.this, getString(R.string.itemClicked) + itemName, Toast.LENGTH_SHORT).show();
@@ -116,7 +116,7 @@
                         return false;
                     }
 
-                    Constants.SELECTED_POSITION = position;
+                    AppConstants.SELECTED_POSITION = position;
                     selectedView = view;
                     selectedView.setBackgroundColor(Color.LTGRAY);
                     listViewDefault.setEnabled(false);
@@ -140,7 +140,7 @@
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             if(item.getItemId() == R.id.menuItemAdd) {
                 Intent intent = new Intent(this, ListRegistrationActivity.class);
-                startActivityForResult(intent, Constants.REQUEST_CODE);
+                startActivityForResult(intent, AppConstants.REQUEST_CODE);
                 return true;
             }else if(item.getItemId() == R.id.menuItemAbout) {
                 Intent intent = new Intent(this, AboutAppActivity.class);
@@ -158,7 +158,7 @@
 
         @Override
         public boolean onPrepareOptionsMenu(Menu menu) {
-            switch (Constants.DEFAULT_THEME_OPTION) {
+            switch (AppConstants.DEFAULT_THEME_OPTION) {
                 case AppCompatDelegate.MODE_NIGHT_NO:
                     menu.findItem(R.id.menuItemLightTheme).setChecked(true);
                     return true;
@@ -194,9 +194,9 @@
         protected void onActivityResult(int requestCode, int resultCode, Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
 
-            if (requestCode == Constants.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-                String listName = data.getStringExtra(Constants.EXTRA_NEW_LIST_NAME);
-                String listPriority = data.getStringExtra(Constants.EXTRA_LIST_PRIORITY);
+            if (requestCode == AppConstants.REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+                String listName = data.getStringExtra(AppConstants.EXTRA_NEW_LIST_NAME);
+                String listPriority = data.getStringExtra(AppConstants.EXTRA_LIST_PRIORITY);
 
                 ShoppingList newList = new ShoppingList(nextItemId, listName, new Date(), listPriority);
                 shoppingLists.add(newList);
@@ -214,11 +214,11 @@
 
         private void editList(int position) {
             Intent intent = new Intent(this, ListRegistrationActivity.class);
-            intent.putExtra(Constants.EXTRA_LIST_ID, shoppingLists.get(position).getId());
-            intent.putExtra(Constants.EXTRA_LIST_NAME, shoppingLists.get(position).getName());
-            intent.putExtra(Constants.EXTRA_LIST_PRIORITY, shoppingLists.get(position).getPriority());
-            intent.putExtra(Constants.EXTRA_EDITED_POSITION, position);
-            startActivityForResult(intent, Constants.REQUEST_CODE);
+            intent.putExtra(AppConstants.EXTRA_LIST_ID, shoppingLists.get(position).getId());
+            intent.putExtra(AppConstants.EXTRA_LIST_NAME, shoppingLists.get(position).getName());
+            intent.putExtra(AppConstants.EXTRA_LIST_PRIORITY, shoppingLists.get(position).getPriority());
+            intent.putExtra(AppConstants.EXTRA_EDITED_POSITION, position);
+            startActivityForResult(intent, AppConstants.REQUEST_CODE);
         }
 
         private void deleteList(int position) {
@@ -235,24 +235,24 @@
         }
 
         public void readSharedPreference() {
-            SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
-            Constants.DEFAULT_THEME_OPTION = sharedPreferences.getInt(Constants.APP_THEME, Constants.DEFAULT_THEME_OPTION);
+            SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+            AppConstants.DEFAULT_THEME_OPTION = sharedPreferences.getInt(AppConstants.APP_THEME, AppConstants.DEFAULT_THEME_OPTION);
 
             setThemeOption();
         }
 
         public void saveSharedPreference(int themeOption) {
-            SharedPreferences sharedPreferences = getSharedPreferences(Constants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = getSharedPreferences(AppConstants.SHARED_PREFERENCES, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            editor.putInt(Constants.APP_THEME, themeOption);
+            editor.putInt(AppConstants.APP_THEME, themeOption);
             editor.apply();
 
-            Constants.DEFAULT_THEME_OPTION = themeOption;
+            AppConstants.DEFAULT_THEME_OPTION = themeOption;
             setThemeOption();
         }
 
         public void setThemeOption() {
-            AppCompatDelegate.setDefaultNightMode(Constants.DEFAULT_THEME_OPTION);
+            AppCompatDelegate.setDefaultNightMode(AppConstants.DEFAULT_THEME_OPTION);
         }
     }
