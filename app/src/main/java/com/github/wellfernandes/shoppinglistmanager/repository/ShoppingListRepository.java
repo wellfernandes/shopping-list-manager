@@ -1,37 +1,25 @@
 package com.github.wellfernandes.shoppinglistmanager.repository;
 
-import android.content.Context;
 import androidx.lifecycle.LiveData;
+import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.Query;
+import androidx.room.Update;
+import androidx.room.Delete;
 
-import com.github.wellfernandes.shoppinglistmanager.database.DatabaseConnection;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
-import com.github.wellfernandes.shoppinglistmanager.model.ShoppingListDAO;
 
 import java.util.List;
-
-public class ShoppingListRepository {
-    private final ShoppingListDAO shoppingListDao;
-    private final LiveData<List<ShoppingList>> allShoppingLists;
-
-    public ShoppingListRepository(Context context) {
-        DatabaseConnection databaseConnection = DatabaseConnection.getInstance(context);
-        shoppingListDao = databaseConnection.shoppingListDAO();
-        allShoppingLists = shoppingListDao.getAllShoppingLists();
-    }
-
-    public LiveData<List<ShoppingList>> getAllShoppingLists() {
-        return allShoppingLists;
-    }
-    public void insert(ShoppingList shoppingList) {
-        shoppingListDao.insert(shoppingList);
-    }
-    public void update(ShoppingList shoppingList) {
-        shoppingListDao.update(shoppingList);
-    }
-    public void delete(ShoppingList shoppingList) {
-        shoppingListDao.delete(shoppingList);
-    }
-    public LiveData<ShoppingList> getShoppingListById(int id) {
-       return shoppingListDao.getShoppingListById(id);
-    }
+@Dao
+public interface ShoppingListDAO {
+    @Insert
+    void insert(ShoppingList shoppingList);
+    @Update
+    void update(ShoppingList shoppingList);
+    @Delete
+    void delete(ShoppingList shoppingList);
+    @Query("SELECT * FROM shoppinglist WHERE id = :id")
+    LiveData<ShoppingList> getShoppingListById(int id);
+    @Query("SELECT * FROM shoppinglist ORDER BY createdAt ASC")
+    LiveData<List<ShoppingList>> getAllShoppingLists();
 }
