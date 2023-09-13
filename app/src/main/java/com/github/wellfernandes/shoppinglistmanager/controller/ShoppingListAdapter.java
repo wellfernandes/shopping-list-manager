@@ -72,4 +72,12 @@ public class ShoppingListAdapter extends BaseAdapter {
         TextView textViewDateValue;
         TextView textViewPriorityValue;
     }
+
+    public void setInfoShoppingList(List<ShoppingList> updatedInfos) {
+        shoppingLists.clear();
+        if (updatedInfos != null) {
+            shoppingLists.addAll(updatedInfos);
+        }
+        notifyDataSetChanged();
+    }
 }
