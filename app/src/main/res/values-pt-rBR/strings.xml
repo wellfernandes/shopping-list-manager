@@ -36,10 +36,14 @@
     <string name="text_about_app">"O Shopping List Manager é um aplicativo para criar lista de compras, podendo indicar o nível de prioridade de cada lista."</string>
     <string name="add_new_list">Adicionar</string>
     <string name="about_app">Sobre</string>
-    <string name="light_theme">Tema Claro</string>
-    <string name="dark_theme">Tema Escuro</string>
+    <string name="light_theme">"Tema Claro"</string>
+    <string name="dark_theme">"Tema Escuro"</string>
     <string name="delete_list_selected">Excluir</string>
     <string name="edit_list_selected">Editar</string>
-    <string name="list_name">Nome da Lista</string>
+    <string name="list_name">"Nome da Lista"</string>
     <string name="list_priority">Prioridade</string>
+    <string name="message_confirm_delete">"Tem certeza de que deseja excluir esta lista?"</string>
+    <string name="text_button_dialog_ok">OK</string>
+    <string name="text_button_dialog_cancel">Cancelar</string>
+    <string name="text_title_dialog">Confirmar</string>
 </resources>
