@@ -41,4 +41,8 @@
     <string name="edit_list_selected">Edit</string>
     <string name="list_name">List Name</string>
     <string name="list_priority">Priority</string>
+    <string name="message_confirm_delete">"Are you sure you want to delete this list?"</string>
+    <string name="text_button_dialog_ok">OK</string>
+    <string name="text_button_dialog_cancel">Cancel</string>
+    <string name="text_title_dialog">Confirm</string>
 </resources>
