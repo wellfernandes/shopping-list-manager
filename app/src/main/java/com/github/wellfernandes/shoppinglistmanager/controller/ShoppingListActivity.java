@@ -1,6 +1,7 @@
     package com.github.wellfernandes.shoppinglistmanager.controller;
 
     import android.content.Context;
+    import android.content.DialogInterface;
     import android.content.Intent;
     import android.content.SharedPreferences;
     import android.graphics.Color;
@@ -29,6 +30,7 @@
     import com.github.wellfernandes.shoppinglistmanager.controller.viewmodel.ShoppingListViewModel;
     import com.github.wellfernandes.shoppinglistmanager.database.DatabaseConnection;
     import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
+    import com.github.wellfernandes.shoppinglistmanager.utils.Alerts;
 
     import java.util.ArrayList;
     import java.util.Date;
@@ -247,15 +249,29 @@
 
         private void deleteList(int listPosition) {
             LiveData<ShoppingList> shoppingListById = shoppingListViewModel.getShoppingListById(listPosition);
-
             shoppingListById.observe(this, new Observer<ShoppingList>() {
                 @Override
                 public void onChanged(ShoppingList shoppingList) {
                     if (shoppingList != null) {
-                        DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ShoppingListActivity.this);
-                        databaseConnection.shoppingListDAO().delete(shoppingList);
-                        shoppingListViewModel.delete(shoppingList);
-                        shoppingListAdapter.notifyDataSetChanged();
+                        DialogInterface.OnClickListener listener =
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ShoppingListActivity.this);
+                                                databaseConnection.shoppingListDAO().delete(shoppingList);
+                                                //shoppingListViewModel.delete(shoppingList);
+                                                databaseConnection.shoppingListDAO().delete(shoppingList);
+                                                shoppingListAdapter.notifyDataSetChanged();
+                                                break;
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                break;
+                                        }
+                                    }
+                                };
+
+                        Alerts.alertConfirm(ShoppingListActivity.this, getString(R.string.message_confirm_delete), listener);
                     } else {
                         Toast.makeText(ShoppingListActivity.this, ErrorConstants.ERROR_DELETE_LIST, Toast.LENGTH_SHORT).show();
                     }
