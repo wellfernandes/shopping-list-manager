@@ -18,9 +18,16 @@
     import androidx.appcompat.app.AppCompatActivity;
     import androidx.appcompat.app.AppCompatDelegate;
     import androidx.appcompat.view.ActionMode;
+    import androidx.lifecycle.LiveData;
+    import androidx.lifecycle.Observer;
+    import androidx.lifecycle.ViewModelProvider;
+    import androidx.room.Database;
 
     import com.github.wellfernandes.shoppinglistmanager.R;
     import com.github.wellfernandes.shoppinglistmanager.constants.AppConstants;
+    import com.github.wellfernandes.shoppinglistmanager.constants.ErrorConstants;
+    import com.github.wellfernandes.shoppinglistmanager.controller.viewmodel.ShoppingListViewModel;
+    import com.github.wellfernandes.shoppinglistmanager.database.DatabaseConnection;
     import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
     import java.util.ArrayList;
@@ -28,9 +35,8 @@
     import java.util.List;
 
     public class ShoppingListActivity extends AppCompatActivity {
-        private int nextItemId = 1;
         private ListView listViewDefault;
-        private static List<ShoppingList> shoppingLists = new ArrayList<>();
+        private ShoppingListViewModel shoppingListViewModel;
         private ShoppingListAdapter shoppingListAdapter;
         private ActionMode actionMode;
         private View selectedView;
@@ -60,7 +66,9 @@
                     mode.finish();
                     return true;
                 } else if (item.getItemId() == R.id.menuItemDelete) {
-                    deleteList(AppConstants.SELECTED_POSITION);
+                    ShoppingList selectedList = shoppingListViewModel.
+                            getAllShoppingLists().getValue().get(AppConstants.SELECTED_POSITION);
+                    deleteList(selectedList.getId());
                     mode.finish();
                     return true;
                 }
@@ -95,7 +103,7 @@
             listViewDefault.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    ShoppingList clickedList = shoppingLists.get(position);
+                    ShoppingList clickedList = shoppingListViewModel.getAllShoppingLists().getValue().get(position);
                     String itemName = clickedList.getName();
 
                     AppConstants.SELECTED_POSITION = position;
@@ -198,40 +206,63 @@
                 String listName = data.getStringExtra(AppConstants.EXTRA_NEW_LIST_NAME);
                 String listPriority = data.getStringExtra(AppConstants.EXTRA_LIST_PRIORITY);
 
-                ShoppingList newList = new ShoppingList(nextItemId, listName, new Date(), listPriority);
-                shoppingLists.add(newList);
+                ShoppingList newShoppingList = new ShoppingList(listName, new Date(), listPriority);
 
-                nextItemId++;
+                DatabaseConnection databaseConnection = DatabaseConnection.getInstance(this);
+                databaseConnection.shoppingListDAO().insert(newShoppingList);
             }
 
             shoppingListAdapter.notifyDataSetChanged();
         }
 
         private void populateListViewShoppingLists() {
-            shoppingListAdapter = new ShoppingListAdapter(this, shoppingLists);
+            shoppingListViewModel = new ViewModelProvider(
+                    this).get(ShoppingListViewModel.class);
+
+            shoppingListAdapter = new ShoppingListAdapter(
+                    ShoppingListActivity.this, new ArrayList<>());
+
             listViewDefault.setAdapter(shoppingListAdapter);
+            shoppingListViewModel.getAllShoppingLists().observe(this, new Observer<List<ShoppingList>>() {
+                @Override
+                public void onChanged(List<ShoppingList> shoppingLists) {
+                    shoppingListAdapter.setInfoShoppingList(shoppingLists);
+                    shoppingListAdapter.notifyDataSetChanged();
+                }
+            });
         }
 
         private void editList(int position) {
-            Intent intent = new Intent(this, ListRegistrationActivity.class);
-            intent.putExtra(AppConstants.EXTRA_LIST_ID, shoppingLists.get(position).getId());
-            intent.putExtra(AppConstants.EXTRA_LIST_NAME, shoppingLists.get(position).getName());
-            intent.putExtra(AppConstants.EXTRA_LIST_PRIORITY, shoppingLists.get(position).getPriority());
-            intent.putExtra(AppConstants.EXTRA_EDITED_POSITION, position);
-            startActivityForResult(intent, AppConstants.REQUEST_CODE);
+            if (position >= 0 && position < shoppingListAdapter.getCount()) {
+                ShoppingList selectedList = (ShoppingList) shoppingListAdapter.getItem(position);
+
+                Intent intent = new Intent(this, ListRegistrationActivity.class);
+                intent.putExtra(AppConstants.EXTRA_LIST_ID, selectedList.getId());
+                intent.putExtra(AppConstants.EXTRA_LIST_NAME, selectedList.getName());
+                intent.putExtra(AppConstants.EXTRA_LIST_PRIORITY, selectedList.getPriority());
+                intent.putExtra(AppConstants.EXTRA_EDITED_POSITION, position);
+                startActivityForResult(intent, AppConstants.REQUEST_CODE);
+            }
         }
 
-        private void deleteList(int position) {
-            shoppingLists.remove(position);
-            shoppingListAdapter.notifyDataSetChanged();
-        }
+        private void deleteList(int listPosition) {
+            LiveData<ShoppingList> shoppingListById = shoppingListViewModel.getShoppingListById(listPosition);
 
-        public static List<ShoppingList> getShoppingLists() {
-            return shoppingLists;
-        }
+            shoppingListById.observe(this, new Observer<ShoppingList>() {
+                @Override
+                public void onChanged(ShoppingList shoppingList) {
+                    if (shoppingList != null) {
+                        DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ShoppingListActivity.this);
+                        databaseConnection.shoppingListDAO().delete(shoppingList);
+                        shoppingListViewModel.delete(shoppingList);
+                        shoppingListAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(ShoppingListActivity.this, ErrorConstants.ERROR_DELETE_LIST, Toast.LENGTH_SHORT).show();
+                    }
 
-        public static void setShoppingLists(List<ShoppingList> shoppingLists) {
-            ShoppingListActivity.shoppingLists = shoppingLists;
+                    shoppingListById.removeObserver(this);
+                }
+            });
         }
 
         public void readSharedPreference() {
