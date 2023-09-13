@@ -12,12 +12,19 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.github.wellfernandes.shoppinglistmanager.R;
 import com.github.wellfernandes.shoppinglistmanager.constants.AppConstants;
+import com.github.wellfernandes.shoppinglistmanager.constants.ErrorConstants;
+import com.github.wellfernandes.shoppinglistmanager.controller.viewmodel.ShoppingListViewModel;
+import com.github.wellfernandes.shoppinglistmanager.database.DatabaseConnection;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class ListRegistrationActivity extends AppCompatActivity {
     private EditText editTextNewList;
@@ -85,23 +92,38 @@ public class ListRegistrationActivity extends AppCompatActivity {
         String listPriority = spinnerLists.getSelectedItem().toString();
 
         if (!listName.isEmpty() && getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1) == -1) {
-            Intent intent = new Intent();
-            intent.putExtra(AppConstants.EXTRA_NEW_LIST_NAME, listName);
-            intent.putExtra(AppConstants.EXTRA_LIST_PRIORITY, listPriority);
-            setResult(RESULT_OK, intent);
-            finish();
-        } else if (getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1) != -1) {
-            int editedListId = getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1);
-            for (ShoppingList shoppingList : ShoppingListActivity.getShoppingLists()) {
-                if (shoppingList.getId() == editedListId) {
-                    shoppingList.setName(listName);
-                    shoppingList.setPriority(listPriority);
-                    break;
-                }
-            }
 
+            ShoppingList newList = new ShoppingList(listName, new Date(), listPriority);
+
+            DatabaseConnection databaseConnection = DatabaseConnection.getInstance(this);
+            databaseConnection.shoppingListDAO().insert(newList);
+            
             setResult(RESULT_OK);
             finish();
+        } else if (getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1) != -1) {
+            int listToEdit = getIntent().getIntExtra(AppConstants.EXTRA_LIST_ID, -1);
+            
+            ShoppingListViewModel viewModel = new ViewModelProvider(this).
+                    get(ShoppingListViewModel.class);
+
+            LiveData<ShoppingList> shoppingListLiveData = viewModel.getShoppingListById(listToEdit);
+            shoppingListLiveData.observe(this, new Observer<ShoppingList>() {
+                @Override
+                public void onChanged(ShoppingList shoppingList) {
+                    if (shoppingList != null) {
+                        shoppingList.setName(listName);
+                        shoppingList.setPriority(listPriority);
+
+                        DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ListRegistrationActivity.this);
+                        databaseConnection.shoppingListDAO().update(shoppingList);
+
+                        setResult(RESULT_OK);
+                        finish();
+                    } else {
+                        Toast.makeText(ListRegistrationActivity.this, ErrorConstants.ERROR_UPDATE_LIST, Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         } else {
             Toast.makeText(this, R.string.messageInsertListName, Toast.LENGTH_SHORT).show();
         }
