@@ -1,21 +1,31 @@
 package com.github.wellfernandes.shoppinglistmanager.model;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.github.wellfernandes.shoppinglistmanager.utils.DateConverter;
+
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Date;
 import java.util.Locale;
 
-// Shopping list entity
+@Entity
 public class ShoppingList implements Serializable {
+    @PrimaryKey(autoGenerate = true)
     private int id;
+    @NonNull
     private String name;
+
+    @TypeConverters({DateConverter.class})
     private Date createdAt;
     private String priority;
 
     public ShoppingList(){}
 
-    public ShoppingList(int id, String name, Date createdAt, String priority) {
-        this.id = id;
+    public ShoppingList(String name, Date createdAt, String priority) {
         this.name = name;
         this.createdAt = createdAt;
         this.priority = priority;
