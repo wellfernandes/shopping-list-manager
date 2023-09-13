@@ -1,26 +1,37 @@
 package com.github.wellfernandes.shoppinglistmanager.repository;
 
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import androidx.lifecycle.LiveData;
 
-import androidx.annotation.Nullable;
+import com.github.wellfernandes.shoppinglistmanager.database.DatabaseConnection;
+import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
+import com.github.wellfernandes.shoppinglistmanager.model.ShoppingListDAO;
 
-import com.github.wellfernandes.shoppinglistmanager.constants.DatabaseConstants;
+import java.util.List;
 
-public class ShoppingListRepository extends SQLiteOpenHelper {
+public class ShoppingListRepository {
+    private final ShoppingListDAO shoppingListDao;
+    private final LiveData<List<ShoppingList>> allShoppingLists;
 
-        public ShoppingListRepository(@Nullable Context context) {
-        super(context, DatabaseConstants.DATABASE_NAME, null, DatabaseConstants.DATABASE_VERSION);
+    public ShoppingListRepository(Context context) {
+        DatabaseConnection databaseConnection = DatabaseConnection.getInstance(context);
+        shoppingListDao = databaseConnection.shoppingListDAO();
+        allShoppingLists = shoppingListDao.getAllShoppingLists();
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
+    public LiveData<List<ShoppingList>> getAllShoppingLists() {
+        return allShoppingLists;
     }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+    public void insert(ShoppingList shoppingList) {
+        shoppingListDao.insert(shoppingList);
+    }
+    public void update(ShoppingList shoppingList) {
+        shoppingListDao.update(shoppingList);
+    }
+    public void delete(ShoppingList shoppingList) {
+        shoppingListDao.delete(shoppingList);
+    }
+    public LiveData<ShoppingList> getShoppingListById(int id) {
+       return shoppingListDao.getShoppingListById(id);
     }
 }
