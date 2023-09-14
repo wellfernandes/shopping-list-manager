@@ -4,23 +4,21 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
-import com.github.wellfernandes.shoppinglistmanager.repository.ShoppingListRepository;
+import com.github.wellfernandes.shoppinglistmanager.service.ShoppingListService;
 import java.util.List;
 public class ShoppingListViewModel extends AndroidViewModel {
-    private ShoppingListRepository shoppingListRepository;
+    private ShoppingListService shoppingListService;
     private LiveData<List<ShoppingList>> allShoppingLists;
     public ShoppingListViewModel(Application application) {
         super(application);
-        shoppingListRepository = new ShoppingListRepository(application);
-        allShoppingLists = shoppingListRepository.getAllShoppingLists();
+        shoppingListService = new ShoppingListService(application);
+        allShoppingLists = shoppingListService.getAllShoppingLists();
     }
     public LiveData<List<ShoppingList>> getAllShoppingLists() {
         return allShoppingLists;
     }
-    public void delete(ShoppingList shoppingList) {
-        shoppingListRepository.delete(shoppingList);
-    }
+
     public LiveData<ShoppingList> getShoppingListById(int id) {
-        return shoppingListRepository.getShoppingListById(id);
+        return shoppingListService.getShoppingListById(id);
     }
 }
