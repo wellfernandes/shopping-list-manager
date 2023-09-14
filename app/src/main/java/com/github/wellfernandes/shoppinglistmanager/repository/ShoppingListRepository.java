@@ -11,7 +11,7 @@ import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
 
 import java.util.List;
 @Dao
-public interface ShoppingListDAO {
+public interface ShoppingListRepository {
     @Insert
     void insert(ShoppingList shoppingList);
     @Update

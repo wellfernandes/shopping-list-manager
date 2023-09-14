@@ -8,11 +8,11 @@ import androidx.room.RoomDatabase;
 
 import com.github.wellfernandes.shoppinglistmanager.constants.DatabaseConstants;
 import com.github.wellfernandes.shoppinglistmanager.model.ShoppingList;
-import com.github.wellfernandes.shoppinglistmanager.model.ShoppingListDAO;
+import com.github.wellfernandes.shoppinglistmanager.repository.ShoppingListRepository;
 @Database(entities = {ShoppingList.class}, version = 1, exportSchema = false)
 public abstract class DatabaseConnection extends RoomDatabase {
     private static DatabaseConnection databaseConnection;
-    public abstract ShoppingListDAO shoppingListDAO();
+    public abstract ShoppingListRepository shoppingListRepository();
     public static synchronized DatabaseConnection getInstance(Context context) {
         if (databaseConnection == null) {
             databaseConnection = Room.databaseBuilder(

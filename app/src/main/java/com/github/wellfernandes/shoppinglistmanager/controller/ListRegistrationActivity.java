@@ -96,7 +96,7 @@ public class ListRegistrationActivity extends AppCompatActivity {
             ShoppingList newList = new ShoppingList(listName, new Date(), listPriority);
 
             DatabaseConnection databaseConnection = DatabaseConnection.getInstance(this);
-            databaseConnection.shoppingListDAO().insert(newList);
+            databaseConnection.shoppingListRepository().insert(newList);
             
             setResult(RESULT_OK);
             finish();
@@ -115,7 +115,7 @@ public class ListRegistrationActivity extends AppCompatActivity {
                         shoppingList.setPriority(listPriority);
 
                         DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ListRegistrationActivity.this);
-                        databaseConnection.shoppingListDAO().update(shoppingList);
+                        databaseConnection.shoppingListRepository().update(shoppingList);
 
                         setResult(RESULT_OK);
                         finish();

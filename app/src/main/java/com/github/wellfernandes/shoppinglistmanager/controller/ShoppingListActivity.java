@@ -22,7 +22,6 @@
     import androidx.lifecycle.LiveData;
     import androidx.lifecycle.Observer;
     import androidx.lifecycle.ViewModelProvider;
-    import androidx.room.Database;
 
     import com.github.wellfernandes.shoppinglistmanager.R;
     import com.github.wellfernandes.shoppinglistmanager.constants.AppConstants;
@@ -211,7 +210,7 @@
                 ShoppingList newShoppingList = new ShoppingList(listName, new Date(), listPriority);
 
                 DatabaseConnection databaseConnection = DatabaseConnection.getInstance(this);
-                databaseConnection.shoppingListDAO().insert(newShoppingList);
+                databaseConnection.shoppingListRepository().insert(newShoppingList);
             }
 
             shoppingListAdapter.notifyDataSetChanged();
@@ -260,9 +259,9 @@
                                         switch (which) {
                                             case DialogInterface.BUTTON_POSITIVE:
                                                 DatabaseConnection databaseConnection = DatabaseConnection.getInstance(ShoppingListActivity.this);
-                                                databaseConnection.shoppingListDAO().delete(shoppingList);
+                                                databaseConnection.shoppingListRepository().delete(shoppingList);
                                                 //shoppingListViewModel.delete(shoppingList);
-                                                databaseConnection.shoppingListDAO().delete(shoppingList);
+                                                databaseConnection.shoppingListRepository().delete(shoppingList);
                                                 shoppingListAdapter.notifyDataSetChanged();
                                                 break;
                                             case DialogInterface.BUTTON_NEGATIVE:
