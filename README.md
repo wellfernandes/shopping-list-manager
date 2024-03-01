@@ -1,6 +1,6 @@
 # Shopping List Manager
 
-![shopping-list-manager](img/shopping-list-manager.png)
+![shopping-list-manager](img/shopping-list-manager-app.png)
 
 Desenvolvimento de uma aplicação Android para Controle de Lista de Compras. 
 
